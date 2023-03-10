@@ -1,8 +1,8 @@
 package ru.practicum.model;
 
-import ru.practicum.dto.EndpointHitDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import ru.practicum.dto.EndpointHitDto;
 
 @Component
 @AllArgsConstructor
