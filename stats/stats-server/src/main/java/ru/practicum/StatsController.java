@@ -5,8 +5,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.dto.GetStatsDto;
-import ru.practicum.model.GetStatsMapper;
 import ru.practicum.model.ViewStats;
 
 import javax.validation.Valid;
@@ -18,7 +16,6 @@ import java.util.List;
 @Validated
 public class StatsController {
 
-    private final GetStatsMapper getStatsMapper;
     private final StatsService statsService;
 
     @GetMapping("/stats")
@@ -28,8 +25,7 @@ public class StatsController {
                                     @RequestParam(name = "unique", defaultValue = "false") boolean unique) {
         log.info("Статистика посещения по параметрам: start = " + start +
                 ", end = " + end + ", uris size = " + uris.size() + "unique =" + unique);
-        GetStatsDto getStatsDto = getStatsMapper.createDtoItem(start, end, uris, unique);
-        return statsService.getStats(getStatsDto);
+        return statsService.getStats(start, end, uris, unique);
     }
 
     @PostMapping("/hit")
