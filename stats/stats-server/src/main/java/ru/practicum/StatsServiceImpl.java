@@ -25,8 +25,11 @@ public class StatsServiceImpl implements StatsService {
     public List<ViewStats> getStats(String start, String end, List<String> uris, boolean unique) {
         LocalDateTime startTime = LocalDateTime.parse(start, DateTimeFormatter.ofPattern(preformatted));
         LocalDateTime endTime = LocalDateTime.parse(end, DateTimeFormatter.ofPattern(preformatted));
-            return (unique) ? statsRepository.findAllUnique(startTime, endTime, uris, true) :
-                    statsRepository.findAll(startTime, endTime, uris);
+        if (unique) {
+            return statsRepository.findAllUnique(startTime, endTime, uris, unique);
+        } else {
+            return statsRepository.findAll(startTime, endTime, uris);
+        }
     }
 
     @Override
