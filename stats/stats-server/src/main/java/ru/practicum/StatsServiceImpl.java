@@ -3,6 +3,7 @@ package ru.practicum;
 import ru.practicum.dto.EndpointHitDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.practicum.dto.GetStatsDto;
 import ru.practicum.model.EndpointHit;
 import ru.practicum.model.EndpointHitMapper;
 import ru.practicum.model.ViewStats;
@@ -15,19 +16,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StatsServiceImpl implements StatsService {
 
+    private static String PREFORMATTED;
+
     private final StatsRepository statsRepository;
 
     private final EndpointHitMapper endpointHitMapper;
 
     @Override
-    public List<ViewStats> getStats(String start, String end, List<String> uris, boolean unique) {
-        LocalDateTime startTime = LocalDateTime.parse(start, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        LocalDateTime endTime = LocalDateTime.parse(end, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        if (unique) {
-            return statsRepository.findAllUnique(startTime, endTime, uris, unique);
-        } else {
-            return statsRepository.findAll(startTime, endTime, uris);
-        }
+    public List<ViewStats> getStats(GetStatsDto getStatsDto) {
+        LocalDateTime startTime = LocalDateTime.parse(getStatsDto.getStart(), DateTimeFormatter.ofPattern(PREFORMATTED));
+        LocalDateTime endTime = LocalDateTime.parse(getStatsDto.getEnd(), DateTimeFormatter.ofPattern(PREFORMATTED));
+            return (getStatsDto.getUnique()) ? statsRepository.findAllUnique(startTime, endTime, getStatsDto.getUris(), true) :
+                    statsRepository.findAll(startTime, endTime, getStatsDto.getUris());
     }
 
     @Override
