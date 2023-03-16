@@ -20,13 +20,10 @@ public class EndpointHit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "app", length = 200)
     private String app;
-
     @Column(name = "uri", length = 1000)
     private String uri;
-
     @Column(name = "ip", length = 200)
     private String ip;
 
