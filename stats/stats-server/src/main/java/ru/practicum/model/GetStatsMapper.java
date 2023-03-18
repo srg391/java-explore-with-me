@@ -8,12 +8,9 @@ import java.util.List;
 @Component
 public class GetStatsMapper {
 
-    public GetStatsDto createDtoItem(String start, String end, List<String> uris, boolean unique) {
+    public GetStatsDto createDtoItem(String start, String end, List<String> uris, Boolean unique) {
         return new GetStatsDto(
-                start,
-                end,
-                uris,
-                unique
+                start, end, uris, unique
         );
     }
 }

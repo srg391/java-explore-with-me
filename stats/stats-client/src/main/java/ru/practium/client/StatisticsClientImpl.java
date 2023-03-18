@@ -24,8 +24,7 @@ public class StatisticsClientImpl implements StatisticsClient {
     private final ObjectMapper objectMapper;
 
     public StatisticsClientImpl(@Value("${ewn-main}") String app,
-                                @Value("${stats.url}")
-                                String url, ObjectMapper objectMapper) {
+                                @Value("${stats.url}") String url, ObjectMapper objectMapper) {
         this.app = app;
         this.url = url;
         this.objectMapper = objectMapper;

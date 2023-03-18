@@ -26,7 +26,7 @@ public class StatsController {
     public List<ViewStats> getStats(@RequestParam(name = "start") String start,
                                     @RequestParam(name = "end") String end,
                                     @RequestParam(name = "uris", required = false) List<String> uris,
-                                    @RequestParam(name = "unique", defaultValue = "false") boolean unique) {
+                                    @RequestParam(name = "unique", defaultValue = "false") Boolean unique) {
         log.info("Статистика посещения по параметрам: start = " + start +
                 ", end = " + end + ", uris size = " + uris.size() + "unique =" + unique);
         GetStatsDto getStatsDto = getStatsMapper.createDtoItem(start, end, uris, unique);

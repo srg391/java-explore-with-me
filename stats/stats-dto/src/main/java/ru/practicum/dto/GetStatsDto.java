@@ -24,9 +24,6 @@ public class GetStatsDto {
     private List<String> uris;
 
     @NotBlank
-    private boolean unique;
+    private Boolean unique;
 
-    public boolean getUnique() {
-        return unique;
-    }
 }
